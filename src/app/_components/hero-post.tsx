@@ -4,18 +4,15 @@ import { type Author } from "@/interfaces/author";
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
 
-type Props = {
-  // title: string;
-  // coverImage: string;
-  // date: string;
-  // excerpt: string;
-  // author: Author;
-  // slug: string;
+const convertToTitleCase = (str: string) => {
+  return typeof str === 'string' ? str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()) : str;
+};
 
+type Props = {
   artist: string
-description: string
-coverImage: string
-genre: string
+  description: string
+  coverImage: string
+  genre: string
 };
 
 export function HeroPost({
@@ -24,6 +21,9 @@ description,
 coverImage,
 genre,
 }: Props) {
+  const yearFromDescription = parseInt(description.slice(-4));
+  const year = yearFromDescription || new Date().getFullYear();
+
   return (
     <section>
       <div className="mb-8 md:mb-16">
@@ -33,11 +33,11 @@ genre,
         <div>
           <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
             <Link href={`/posts/${description}`} className="hover:underline">
-              {artist}
+            {convertToTitleCase(artist)}
             </Link>
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
-            <DateFormatter dateString={new Date().toISOString()} />
+            <DateFormatter dateString={new Date(year.toString()).toISOString()} />
           </div>
         </div>
       </div>

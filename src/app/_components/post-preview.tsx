@@ -6,13 +6,6 @@ import DateFormatter from "./date-formatter";
 import { ar } from "date-fns/locale";
 
 type Props = {
-  // title: string;
-  // coverImage: string;
-  // date: string;
-  // excerpt: string;
-  // author: Author;
-  // slug: string;
-
   artist: string;
   description: string;
   coverImage: string;
@@ -25,7 +18,7 @@ description,
 coverImage,
 genre,
 }: Props) {
-  const yearFromDescription = parseInt(description.slice(-4)); //utah-84-1976
+  const yearFromDescription = parseInt(description.slice(-4));
   const year = yearFromDescription || new Date().getFullYear();
   return (
     <div>
