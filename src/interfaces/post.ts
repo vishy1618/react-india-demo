@@ -5,15 +5,5 @@ export type Post = {
 description: string;
 coverImage: string;
 genre: string;
-  // slug: string;
-  // title: string;
-  // date: string;
-  // coverImage: string;
-  // author: Author;
-  // excerpt: string;
-  // ogImage: {
-  //   url: string;
-  // };
   content: string;
-  // preview?: boolean;
 };
