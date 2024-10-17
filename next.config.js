@@ -6,7 +6,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-store'
+            value: 'max-age=0, s-maxage=86400, must-revalidate'
           }
         ]
       }
