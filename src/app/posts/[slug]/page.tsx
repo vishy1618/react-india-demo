@@ -6,12 +6,11 @@ import Header from '@/app/_components/header';
 import { PostBody } from '@/app/_components/post-body';
 import { PostHeader } from '@/app/_components/post-header';
 import {
+  getAllPosts,
   getPostBySlug,
   getPostFromCMS,
 } from '@/lib/api';
 import markdownToHtml from '@/lib/markdownToHtml';
-
-export const dynamic = 'force-dynamic';
 
 export default async function Post({ params }: Params) {
   const post = await getPostFromCMS(params.slug);
@@ -63,4 +62,12 @@ export function generateMetadata({ params }: Params): Metadata {
       images: [post.coverImage],
     },
   };
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+
+  return posts.map((post) => ({
+    slug: post.description,
+  }));
 }
